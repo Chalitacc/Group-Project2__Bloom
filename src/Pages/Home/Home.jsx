@@ -1,7 +1,13 @@
+import { plantListArray } from "../../assets/localPlantList";
+import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <PlantList listArray={plantListArray} />
+    </div>
+  );
 };
 
 export default Home;
