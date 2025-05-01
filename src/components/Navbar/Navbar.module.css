@@ -1,0 +1,9 @@
+.titleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.titleContainer img {
+  width: 200px;
+}

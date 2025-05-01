@@ -1,5 +1,6 @@
 export const plantListArray = [
   {
+    id: 0,
     name: "Anemone",
     image: "/images/anemone.png",
     scientificName: "Anemone coronaria",
@@ -12,6 +13,7 @@ export const plantListArray = [
     toxicity: "Mildly toxic to pets and humans if ingested",
   },
   {
+    id: 1,
     name: "Lily",
     image: "/images/lily.png",
     scientificName: "Lilium spp.",
@@ -23,6 +25,7 @@ export const plantListArray = [
     toxicity: "Highly toxic to cats; mildly toxic to dogs and humans",
   },
   {
+    id: 2,
     name: "Orchid",
     image: "/images/orchid.png",
     scientificName: "Phalaenopsis spp.",
@@ -34,6 +37,7 @@ export const plantListArray = [
     toxicity: "Non-toxic to pets and humans",
   },
   {
+    id: 3,
     name: "Rose",
     image: "/images/rose.png",
     scientificName: "Rosa spp.",
@@ -47,6 +51,7 @@ export const plantListArray = [
       "Non-toxic to humans, but mildly toxic to pets (stomach upset if ingested)",
   },
   {
+    id: 4,
     name: "Sunflower",
     image: "/images/sunflower.png",
     scientificName: "Helianthus annuus",
@@ -59,6 +64,7 @@ export const plantListArray = [
     toxicity: "Non-toxic to humans and pets",
   },
   {
+    id: 5,
     name: "Tulip",
     image: "/images/tulip.png",
     scientificName: "Tulipa spp.",
@@ -71,6 +77,7 @@ export const plantListArray = [
     toxicity: "Toxic to pets if ingested (especially the bulbs)",
   },
   {
+    id: 6,
     name: "Zinnia",
     image: "/images/zinnia.png",
     scientificName: "Zinnia elegans",

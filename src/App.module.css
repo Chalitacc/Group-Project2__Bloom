@@ -1,0 +1,24 @@
+.rootContainer {
+  padding: var(--spacing-medium);
+
+  background-color: var(--color-primary-beige);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-secondary-green);
+}
+
+.header {
+  width: 100%;
+  max-width: 900px;
+  padding: var(--spacing-medium);
+}
+
+.main {
+  width: 100%;
+  max-width: 900px;
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-secondary-beige);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}

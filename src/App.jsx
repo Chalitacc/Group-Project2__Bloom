@@ -6,11 +6,11 @@ function App() {
   return (
     <>
       <div className={styles.rootContainer}>
-        <header>
-          <Navbar></Navbar>
+        <header className={styles.header}>
+          <Navbar />
         </header>
-        <main>
-          <Outlet></Outlet>
+        <main className={styles.main}>
+          <Outlet />
         </main>
       </div>
     </>

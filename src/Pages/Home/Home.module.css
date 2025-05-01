@@ -1,0 +1,53 @@
+.homeContainer {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.addPlantButton {
+  padding: var(--spacing-x-small) var(--spacing-x-small);
+  border: 0;
+  border-radius: var(--border-radius-medium);
+  color: var(--color-primary-beige);
+  background-color: var(--color-primary-green);
+  transition: opacity 0.25s;
+}
+
+.addPlantButton:hover {
+  opacity: 0.8;
+}
+
+.utilityContainers {
+  padding: var(--spacing-small) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchContainer,
+.filterContainer,
+.sortContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xx-small);
+}
+
+.searchContainer input {
+  padding: var(--spacing-xx-small);
+}
+
+.utilityRightContainer {
+  display: flex;
+  gap: var(--spacing-small);
+}
+
+.filterContainer label,
+.filterContainer select,
+.sortContainer label,
+.sortContainer select {
+  padding: var(--spacing-xx-small);
+}

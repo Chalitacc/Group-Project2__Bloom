@@ -16,7 +16,7 @@ const PlantItem = ({ item }) => {
       </div>
 
       {/* Backside */}
-      <div className={styles.cardBackContainer}>
+      {/* <div className={styles.cardBackContainer}>
         <h2>{item.name}</h2>
         <ul className={styles.list}>
           <li className={styles.listElement}>
@@ -48,7 +48,7 @@ const PlantItem = ({ item }) => {
             <p className={styles.plantDescription}>{item.toxicity}</p>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

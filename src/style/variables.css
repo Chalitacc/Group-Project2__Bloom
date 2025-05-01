@@ -1,0 +1,39 @@
+:root {
+  /* Colors */
+  --color-primary-white: #fff;
+  --color-primary-back: #171717;
+
+  --color-primary-green: #27432e;
+  --color-secondary-green: #16321c;
+  --color-primary-red: #f14b55;
+
+  --color-primary-beige: #f5f0e4;
+  --color-secondary-beige: #fdfdfd;
+
+  /* Spacing */
+  --spacing-xx-small: 0.25rem;
+  --spacing-x-small: 0.5rem;
+  --spacing-small: 0.75rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-x-large: 3rem;
+
+  /* Font size */
+  --font-size-small: 0.5rem;
+  --font-size-base: 1rem;
+  --font-size-medium: 1.2rem;
+  --font-size-large: 1.5rem;
+  --font-size-x-large: 2rem;
+
+  /* Boarder radius */
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
+  --border-radius-x-large: 2rem;
+
+  /* Layout widths */
+  --layout-primary-width: 800px;
+
+  /* Icon size */
+  --icon-size: 32px;
+}

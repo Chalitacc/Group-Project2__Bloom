@@ -1,8 +1,7 @@
 .rootContainer {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 170px));
   gap: 1rem;
   justify-content: center;
 }
-
