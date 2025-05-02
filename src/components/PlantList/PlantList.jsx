@@ -5,7 +5,7 @@ const PlantList = ({ listArray }) => {
   return (
     <div className={styles.rootContainer}>
       {listArray.map((item) => {
-        return <PlantItem item={item} />;
+        return <PlantItem key={item.id} item={item} />;
       })}
     </div>
   );
