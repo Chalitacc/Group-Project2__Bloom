@@ -1,8 +1,16 @@
 import { plantListArray } from "../../assets/localPlantList";
 import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
+import PlantItem from "../../components/PlantItem/PlantItem";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
+  const { productId } = useParams();
+
+  const plantInFocus = plantListArray.find(
+    (plant) => plant.name.toLowerCase() === productId
+  );
+
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
@@ -38,7 +46,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <PlantList listArray={plantListArray} />
+      {!productId && <PlantList listArray={plantListArray} />}
+      {productId && (
+        <PlantItem listArray={plantListArray} plantInFocus={plantInFocus} />
+      )}
     </div>
   );
 };
