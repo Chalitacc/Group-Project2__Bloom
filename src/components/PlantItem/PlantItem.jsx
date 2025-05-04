@@ -1,56 +1,57 @@
+import { Link } from "react-router-dom";
 import styles from "./PlantItem.module.css";
 
-const PlantItem = ({ item }) => {
+const PlantInFocus = ({ plantInFocus }) => {
   return (
     <>
-      {/* Front Side */}
-      <div className={styles.cardContainer}>
+      <div className={styles.plantContainer}>
+        <h2 className={styles.plantHeader}>{plantInFocus.name}</h2>
         <img
-          src={item.image}
-          alt={`Image of ${item.name}`}
+          src={plantInFocus.image}
+          alt={`Image of ${plantInFocus.name}`}
           className={styles.plantImage}
         />
-        <div className={styles.cardInfoContainer}>
-          <h3 className={styles.plantName}>{item.name}</h3>
-        </div>
-      </div>
-
-      {/* Backside */}
-      {/* <div className={styles.cardBackContainer}>
-        <h2>{item.name}</h2>
         <ul className={styles.list}>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Scientific Name:</p>
-            <p className={styles.plantDescription}>{item.scientificName}</p>
+            <p className={styles.plantDescription}>
+              {plantInFocus.scientificName}
+            </p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Watering Schedule:</p>
-            <p className={styles.plantDescription}>{item.wateringSchedule}</p>
+            <p className={styles.plantDescription}>
+              {plantInFocus.wateringSchedule}
+            </p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Light Requirement:</p>
-            <p className={styles.plantDescription}>{item.lightRequirement}</p>
+            <p className={styles.plantDescription}>
+              {plantInFocus.lightRequirement}
+            </p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Soil Type:</p>
-            <p className={styles.plantDescription}>{item.soilType}</p>
+            <p className={styles.plantDescription}>{plantInFocus.soilType}</p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Temperature Range:</p>
-            <p className={styles.plantDescription}>{item.temperatureRange}</p>
+            <p className={styles.plantDescription}>
+              {plantInFocus.temperatureRange}
+            </p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Humidity:</p>
-            <p className={styles.plantDescription}>{item.humidity}</p>
+            <p className={styles.plantDescription}>{plantInFocus.humidity}</p>
           </li>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Toxicity:</p>
-            <p className={styles.plantDescription}>{item.toxicity}</p>
+            <p className={styles.plantDescription}>{plantInFocus.toxicity}</p>
           </li>
         </ul>
-      </div> */}
+      </div>
     </>
   );
 };
 
-export default PlantItem;
+export default PlantInFocus;

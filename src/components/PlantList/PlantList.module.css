@@ -5,3 +5,30 @@
   gap: 1rem;
   justify-content: center;
 }
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.329);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.plantImage {
+  width: 100%;
+}
+
+.cardInfoContainer {
+  padding: 1rem;
+}
+
+.list {
+  list-style: none;
+}
+
+.plantHeading {
+  font-weight: bold;
+}
