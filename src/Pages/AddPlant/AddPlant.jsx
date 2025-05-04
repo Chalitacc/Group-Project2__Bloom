@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import styles from "./AddPlant.module.css";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
 
 const AddPlant = () => {
   const [plantDetails, setPlantDetails] = useState({
@@ -171,6 +173,16 @@ const AddPlant = () => {
     }
   };
 
+  // save data to firestorec
+  const storeDataToFirestore = async (plant) => {
+    try {
+      const docRef = await addDoc(collection(database, "plants"), plant);
+      console.log("Document has been added with an id:", docRef.id);
+    } catch (error) {
+      console.log("Failed to store document");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isFormValid = handleValidation();
@@ -179,6 +191,11 @@ const AddPlant = () => {
 
     try {
       const imageUrl = await uploadImage();
+
+      /// firebase database
+      const plantData = { ...plantDetails, image: imageUrl };
+      await storeDataToFirestore(plantData);
+
       if (imageUrl) {
         const newPlant = { ...plantDetails, previewUrl: imageUrl };
         setPlantList((prev) => [...prev, newPlant]);
