@@ -3,10 +3,11 @@ import styles from "./AddPlant.module.css";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
 import { addDoc, collection } from "firebase/firestore";
 import { database } from "../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const AddPlant = () => {
   const [plantDetails, setPlantDetails] = useState({
-    plantName: "",
+    name: "",
     scientificName: "",
     wateringSchedule: "",
     lightRequirements: "",
@@ -29,11 +30,11 @@ const AddPlant = () => {
     const error = { ...errorMessage };
     let isValid = true;
 
-    if (!plantDetails.plantName.trim()) {
-      error.plantNameError = "Please enter plant name";
+    if (!plantDetails.name.trim()) {
+      error.nameError = "Please enter plant name";
       isValid = false;
     } else {
-      error.plantNameError = "";
+      error.nameError = "";
     }
 
     if (!plantDetails.scientificName.trim()) {
@@ -183,6 +184,8 @@ const AddPlant = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isFormValid = handleValidation();
@@ -201,10 +204,12 @@ const AddPlant = () => {
         setPlantList((prev) => [...prev, newPlant]);
 
         setUploadStatus("Form submitted successfully ☀️");
+
+        navigate("/");
       }
 
       setPlantDetails({
-        plantName: "",
+        name: "",
         scientificName: "",
         wateringSchedule: "",
         lightRequirements: "",
@@ -230,15 +235,15 @@ const AddPlant = () => {
         {/* ----------------------------- */}
 
         <div>
-          <label htmlFor="plant-name">Plant Name:</label>
+          <label htmlFor="name">Plant Name:</label>
           <input
             type="text"
-            name="plantName"
-            id="plant-name"
+            name="name"
+            id="name"
             onChange={handleChange}
-            value={plantDetails.plantName}
+            value={plantDetails.name}
           />
-          <p className={styles.errorMessage}>{errorMessage.plantNameError}</p>
+          <p className={styles.errorMessage}>{errorMessage.nameError}</p>
         </div>
 
         {/* ----------------------------- */}
