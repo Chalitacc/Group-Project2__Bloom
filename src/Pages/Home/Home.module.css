@@ -8,16 +8,17 @@
   align-items: flex-end;
 }
 
-.addPlantButton {
+.addPlantLink {
   padding: var(--spacing-x-small) var(--spacing-x-small);
   border: 0;
   border-radius: var(--border-radius-medium);
   color: var(--color-primary-beige);
   background-color: var(--color-primary-green);
+  text-decoration: none;
   transition: opacity 0.25s;
 }
 
-.addPlantButton:hover {
+.addPlantLink:hover {
   opacity: 0.8;
 }
 

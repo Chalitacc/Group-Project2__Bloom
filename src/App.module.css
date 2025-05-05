@@ -1,4 +1,5 @@
 .rootContainer {
+  height: 100vh;
   padding: var(--spacing-medium);
 
   background-color: var(--color-primary-beige);

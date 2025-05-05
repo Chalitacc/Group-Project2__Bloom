@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: row;
+}
+
+.textInputContainer {
+  flex-basis: 50%;
+}
+
+.imageInputContainer {
+  flex-basis: 50%;
+}
+
+.textInputContainer,
+.imageInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xx-small);
+}
+
+.submitButton {
+  width: 100%;
+  padding: var(--spacing-small) 0;
+  border: 0;
+  border-radius: var(--border-radius-medium);
+
+  color: var(--color-primary-beige);
+  background-color: var(--color-primary-green);
+}

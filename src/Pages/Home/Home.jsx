@@ -2,7 +2,7 @@ import { plantListArray } from "../../assets/localPlantList";
 import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
 import PlantItem from "../../components/PlantItem/PlantItem";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const Home = () => {
   const { productId } = useParams();
@@ -15,7 +15,9 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <header className={styles.header}>
         <h1 className={styles.title}>Plants</h1>
-        <button className={styles.addPlantButton}>Add Plant</button>
+        <NavLink className={styles.addPlantLink} to={"/add-plant"}>
+          Add Plant
+        </NavLink>
       </header>
       <div className={styles.utilityContainers}>
         <div className={styles.utilityLeftContainer}>
