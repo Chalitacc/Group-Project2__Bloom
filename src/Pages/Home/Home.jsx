@@ -80,10 +80,12 @@ const Home = () => {
       {productId && (
         <PlantItem listArray={plantItem} plantInFocus={plantInFocus} />
       )}
-      {!productId && <PlantList listArray={plantListArray} />}
+
+      {/* Local database */}
+      {/* {!productId && <PlantList listArray={plantListArray} />}
       {productId && (
         <PlantItem listArray={plantListArray} plantInFocus={plantInFocus} />
-      )}
+      )} */}
     </div>
   );
 };
