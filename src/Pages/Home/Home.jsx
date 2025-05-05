@@ -1,14 +1,44 @@
-import { plantListArray } from "../../assets/localPlantList";
 import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
 import PlantItem from "../../components/PlantItem/PlantItem";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import { database } from "../../firebaseConfig";
+import { onSnapshot } from "firebase/firestore";
+
+import { collection } from "firebase/firestore";
+import { plantListArray } from "../../assets/localPlantList";
 
 const Home = () => {
   const { productId } = useParams();
 
-  const plantInFocus = plantListArray.find(
-    (plant) => plant.name.toLowerCase() === productId
+  // const plantInFocus = plantListArray.find(
+  //   (plant) => plant.name.toLowerCase() === productId
+  // );
+
+  // retrieve info from firebase
+
+  const [plantItem, setPlantItem] = useState([]);
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(database, "plants"),
+      (snapshot) => {
+        const plantsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPlantItem(plantsData);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const plantInFocus = plantItem.find(
+    (plant) => plant.name && plant.name.toLowerCase() === productId
   );
 
   return (
@@ -46,6 +76,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {!productId && <PlantList listArray={plantItem} />}
+      {productId && (
+        <PlantItem listArray={plantItem} plantInFocus={plantInFocus} />
+      )}
       {!productId && <PlantList listArray={plantListArray} />}
       {productId && (
         <PlantItem listArray={plantListArray} plantInFocus={plantInFocus} />
