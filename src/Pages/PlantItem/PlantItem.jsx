@@ -17,14 +17,15 @@ const PlantItem = () => {
 
   return (
     <>
-      <h1>hello!</h1>
       <div className={styles.plantContainer}>
-        <h2 className={styles.plantHeader}>{plant.name}</h2>
-        <img
-          src={plant.image}
-          alt={`Image of ${plant.name}`}
-          className={styles.plantImage}
-        />
+        <h1 className={styles.plantHeader}>{plant.name}</h1>
+        <div className={styles.imageContainer}>
+          <img
+            src={plant.image}
+            alt={`Image of ${plant.name}`}
+            className={styles.plantImage}
+          />
+        </div>
         <ul className={styles.list}>
           <li className={styles.listElement}>
             <p className={styles.plantHeading}>Scientific Name:</p>

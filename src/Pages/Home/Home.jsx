@@ -21,12 +21,15 @@ const Home = () => {
       <div className={styles.utilityContainers}>
         <div className={styles.utilityLeftContainer}>
           <div className={styles.searchContainer}>
-            <label htmlFor="search">Search:</label>
+            <img src="/icons/search.svg" alt="" />
             <input
+              aria-label="Search for plants"
               type="search"
               name="search"
               id="search"
               placeholder="Search plants"
+              inputMode="search"
+              autoComplete="off"
             />
           </div>
         </div>
@@ -42,7 +45,12 @@ const Home = () => {
           <div className={styles.sortContainer}>
             <label htmlFor="sort">Sort:</label>
             <select name="sort" id="sort">
-              <option value="alphabetically">Alphabetically</option>
+              <option value="plant-name" className={styles.selectOption}>
+                Plant Name
+              </option>
+              <option value="alphabetically" className={styles.selectOption}>
+                Scientific Name
+              </option>
             </select>
           </div>
         </div>
