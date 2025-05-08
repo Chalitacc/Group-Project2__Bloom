@@ -1,12 +1,16 @@
+import { useContext } from "react";
+import { PlantListContext } from "../../context/PlantListContext";
 import PlantList from "../PlantList/PlantList";
 
-const Filter = ({ listArray, filterType, sortType }) => {
+const Filter = ({ filterType, sortType }) => {
+  const plantList = useContext(PlantListContext);
+
   const filterList = () => {
     if (filterType !== "all") {
-      const filteredList = listArray.filter((item) => item.type === filterType);
+      const filteredList = plantList.filter((item) => item.type === filterType);
       return filteredList;
     } else {
-      return listArray;
+      return plantList;
     }
   };
 
@@ -22,7 +26,7 @@ const Filter = ({ listArray, filterType, sortType }) => {
     }
   };
 
-  return <PlantList listArray={sortFilteredList()} />;
+  return <PlantList filteredSortedList={sortFilteredList()} />;
 };
 
 export default Filter;

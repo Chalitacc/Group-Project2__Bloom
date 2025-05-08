@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const AddPlant = () => {
   const [plantDetails, setPlantDetails] = useState({
     name: "",
+    type: "",
     scientificName: "",
     wateringSchedule: "",
     lightRequirements: "",
@@ -32,6 +33,13 @@ const AddPlant = () => {
 
     if (!plantDetails.name.trim()) {
       error.nameError = "Please enter plant name";
+      isValid = false;
+    } else {
+      error.nameError = "";
+    }
+
+    if (!plantDetails.type.trim()) {
+      error.typeError = "Please enter plant type";
       isValid = false;
     } else {
       error.nameError = "";
@@ -210,6 +218,7 @@ const AddPlant = () => {
 
       setPlantDetails({
         name: "",
+        type: "",
         scientificName: "",
         wateringSchedule: "",
         lightRequirements: "",
@@ -231,176 +240,200 @@ const AddPlant = () => {
   };
   return (
     <div className={styles.addPlantContainer}>
+      <h1>Add plant</h1>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        {/* ----------------------------- */}
+        <section className={styles.inputSection}>
+          <div className={styles.inputContainer}>
+            {/* ----------------------------- */}
+            <div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="name">Plant Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  onChange={handleChange}
+                  value={plantDetails.name}
+                />
+                <p className={styles.errorMessage}>{errorMessage.nameError}</p>
+              </div>
 
-        <div>
-          <label htmlFor="name">Plant Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            onChange={handleChange}
-            value={plantDetails.name}
-          />
-          <p className={styles.errorMessage}>{errorMessage.nameError}</p>
-        </div>
+              {/* ----------------------------- */}
 
-        {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="type">Plant Type:</label>
 
-        <div>
-          <label htmlFor="scientific-name">Scientific Name:</label>
-          <input
-            type="text"
-            name="scientificName"
-            id="scientific-name"
-            onChange={handleChange}
-            value={plantDetails.scientificName}
-          />
-          <p className={styles.errorMessage}>
-            {errorMessage.scientificNameError}
-          </p>
-        </div>
+                <select
+                  name="type"
+                  id="type"
+                  onChange={handleChange}
+                  value={plantDetails.type}
+                >
+                  <option value="">Choose a type</option>
+                  <option value="herb">Herb</option>
+                  <option value="tree">Tree</option>
+                  <option value="shrub">Shrub</option>
+                  <option value="climber">Climber</option>
+                  <option value="creeper">Creeper</option>
+                </select>
 
-        {/* ----------------------------- */}
+                <p className={styles.errorMessage}>{errorMessage.typeError}</p>
+              </div>
 
-        <div>
-          <label htmlFor="watering-schedule">Watering Schedule:</label>
-          <input
-            type="text"
-            name="wateringSchedule"
-            id="watering-schedule"
-            placeholder="e.g. twice a week"
-            onChange={handleChange}
-            value={plantDetails.wateringSchedule}
-          />
-          <p className={styles.errorMessage}>
-            {errorMessage.wateringScheduleError}
-          </p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div>
-          <label htmlFor="light-requirements">Light requirements:</label>
-          <select
-            name="lightRequirements"
-            id="requirements"
-            onChange={handleChange}
-            value={plantDetails.lightRequirements}
-          >
-            <option value="">Select</option>
-            <option value="full-sun">Full Sun ☀️</option>
-            <option value="partial-sun">Partial Sun 🌤️</option>
-            <option value="shade">Shade ☁️</option>
-          </select>
-          <p className={styles.errorMessage}>
-            {errorMessage.lightRequirementsError}
-          </p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div>
-          <label htmlFor="soil-type">Soil Type:</label>
-          <input
-            type="text"
-            name="soilType"
-            id="soil-type"
-            placeholder="e.g. well draining"
-            onChange={handleChange}
-            value={plantDetails.soilType}
-          />
-          <p className={styles.errorMessage}>{errorMessage.soilTypeError}</p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div>
-          <label htmlFor="temperature-range">
-            Temperature range in Celsius:
-          </label>
-          <input
-            type="text"
-            name="temperatureRange"
-            id="temperature-range"
-            placeholder="e.g. 15-25 C"
-            onChange={handleChange}
-            value={plantDetails.temperatureRange}
-          />
-          <p className={styles.errorMessage}>
-            {errorMessage.temperatureRangeError}
-          </p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div>
-          <label htmlFor="humidity">Humidity in %</label>
-          <input
-            type="text"
-            name="humidity"
-            id="humidity"
-            placeholder="e.g. 60"
-            onChange={handleChange}
-            value={plantDetails.humidity}
-          />
-          <p className={styles.errorMessage}>{errorMessage.humidityError}</p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div>
-          <label htmlFor="toxicity">Toxicity</label>
-          <select
-            name="toxicity"
-            id="toxicity"
-            onChange={handleChange}
-            value={plantDetails.toxicity}
-          >
-            <option value="">Select</option>
-            <option value="non-toxic">Non-toxic</option>
-            <option value="toxic-to-pets">Toxic to pets</option>
-            <option value="toxic-to-human">Toxic to humans</option>
-          </select>
-          <p className={styles.errorMessage}>{errorMessage.toxicityError}</p>
-        </div>
-
-        {/* ----------------------------- */}
-
-        <div className={styles.imageUrlContainer}>
-          <label htmlFor="image">Upload Image:</label>
-          <p className={styles.errorMessage}>{errorMessage.imageError}</p>
-          <input
-            type="file"
-            name="image"
-            id="image"
-            className={styles.fileInput}
-            accept=".jpig , .jpg , .png"
-            onChange={handleImageChange}
-            ref={fileInputRef}
-          />
-
-          {plantDetails.previewUrl && (
-            <div className={styles.imagePreviewContainer}>
-              <img
-                src={plantDetails.previewUrl}
-                alt="plant image preview"
-                className={styles.imagePreview}
-              />
-
-              <button
-                className={styles.imageRemoveButton}
-                onClick={handleRemoveImage}
-              >
-                Remove Image
-              </button>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="scientific-name">Scientific Name:</label>
+                <input
+                  type="text"
+                  name="scientificName"
+                  id="scientific-name"
+                  onChange={handleChange}
+                  value={plantDetails.scientificName}
+                />
+                <p className={styles.errorMessage}>
+                  {errorMessage.scientificNameError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="watering-schedule">Watering Schedule:</label>
+                <input
+                  type="text"
+                  name="wateringSchedule"
+                  id="watering-schedule"
+                  placeholder="e.g. twice a week"
+                  onChange={handleChange}
+                  value={plantDetails.wateringSchedule}
+                />
+                <p className={styles.errorMessage}>
+                  {errorMessage.wateringScheduleError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="light-requirements">Light requirements:</label>
+                <select
+                  name="lightRequirements"
+                  id="requirements"
+                  onChange={handleChange}
+                  value={plantDetails.lightRequirements}
+                >
+                  <option value="">Select</option>
+                  <option value="full-sun">Full Sun ☀️</option>
+                  <option value="partial-sun">Partial Sun 🌤️</option>
+                  <option value="shade">Shade ☁️</option>
+                </select>
+                <p className={styles.errorMessage}>
+                  {errorMessage.lightRequirementsError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="soil-type">Soil Type:</label>
+                <input
+                  type="text"
+                  name="soilType"
+                  id="soil-type"
+                  placeholder="e.g. well draining"
+                  onChange={handleChange}
+                  value={plantDetails.soilType}
+                />
+                <p className={styles.errorMessage}>
+                  {errorMessage.soilTypeError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="temperature-range">
+                  Temperature range in Celsius:
+                </label>
+                <input
+                  type="text"
+                  name="temperatureRange"
+                  id="temperature-range"
+                  placeholder="e.g. 15-25 C"
+                  onChange={handleChange}
+                  value={plantDetails.temperatureRange}
+                />
+                <p className={styles.errorMessage}>
+                  {errorMessage.temperatureRangeError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="humidity">Humidity in %</label>
+                <input
+                  type="text"
+                  name="humidity"
+                  id="humidity"
+                  placeholder="e.g. 60"
+                  onChange={handleChange}
+                  value={plantDetails.humidity}
+                />
+                <p className={styles.errorMessage}>
+                  {errorMessage.humidityError}
+                </p>
+              </div>
+              {/* ----------------------------- */}
+              <div className={styles.inputGroup}>
+                <label htmlFor="toxicity">Toxicity</label>
+                <select
+                  name="toxicity"
+                  id="toxicity"
+                  onChange={handleChange}
+                  value={plantDetails.toxicity}
+                >
+                  <option value="">Select</option>
+                  <option value="non-toxic">Non-toxic</option>
+                  <option value="toxic-to-pets">Toxic to pets</option>
+                  <option value="toxic-to-human">Toxic to humans</option>
+                </select>
+                <p className={styles.errorMessage}>
+                  {errorMessage.toxicityError}
+                </p>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
 
-        <button type="submit">Submit</button>
-        {uploadStatus && <p>{uploadStatus}</p>}
+          {/* Image Input Container */}
+          <div className={styles.imageInputContainer}>
+            <div className={styles.imageUrlContainer}>
+              <label htmlFor="image">Upload Image:</label>
+              <p className={styles.errorMessage}>{errorMessage.imageError}</p>
+              <input
+                type="file"
+                name="image"
+                id="image"
+                className={styles.fileInput}
+                accept=".jpig , .jpg , .png"
+                onChange={handleImageChange}
+                ref={fileInputRef}
+              />
+              {plantDetails.previewUrl && (
+                <div className={styles.imagePreviewContainer}>
+                  <img
+                    src={plantDetails.previewUrl}
+                    alt="plant image preview"
+                    className={styles.imagePreview}
+                  />
+                  <button
+                    className={styles.imageRemoveButton}
+                    onClick={handleRemoveImage}
+                  >
+                    Remove Image
+                  </button>
+                </div>
+              )}
+              {uploadStatus && <p>{uploadStatus}</p>}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.buttonSection}>
+          <button type="submit" className={styles.submitButton}>
+            SAVE PLANT
+          </button>
+        </section>
       </form>
     </div>
   );

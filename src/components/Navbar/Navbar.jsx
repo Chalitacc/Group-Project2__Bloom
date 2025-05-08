@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <div className={styles.titleContainer}>
         <NavLink to={"/"}>
-          <img src="images/bloom-logo.png" alt="Bloom logo" />
+          <img src="/images/bloom-logo.png" alt="Bloom logo" />
         </NavLink>
       </div>
     </>
