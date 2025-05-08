@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const AddPlant = () => {
   const [plantDetails, setPlantDetails] = useState({
     name: "",
+    type: "",
     scientificName: "",
     wateringSchedule: "",
     lightRequirements: "",
@@ -32,6 +33,13 @@ const AddPlant = () => {
 
     if (!plantDetails.name.trim()) {
       error.nameError = "Please enter plant name";
+      isValid = false;
+    } else {
+      error.nameError = "";
+    }
+
+    if (!plantDetails.type.trim()) {
+      error.typeError = "Please enter plant type";
       isValid = false;
     } else {
       error.nameError = "";
@@ -210,6 +218,7 @@ const AddPlant = () => {
 
       setPlantDetails({
         name: "",
+        type: "",
         scientificName: "",
         wateringSchedule: "",
         lightRequirements: "",
@@ -248,6 +257,29 @@ const AddPlant = () => {
                 />
                 <p className={styles.errorMessage}>{errorMessage.nameError}</p>
               </div>
+
+              {/* ----------------------------- */}
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="type">Plant Type:</label>
+
+                <select
+                  name="type"
+                  id="type"
+                  onChange={handleChange}
+                  value={plantDetails.type}
+                >
+                  <option value="">Choose a type</option>
+                  <option value="herb">Herb</option>
+                  <option value="tree">Tree</option>
+                  <option value="shrub">Shrub</option>
+                  <option value="climber">Climber</option>
+                  <option value="creeper">Creeper</option>
+                </select>
+
+                <p className={styles.errorMessage}>{errorMessage.typeError}</p>
+              </div>
+
               {/* ----------------------------- */}
               <div className={styles.inputGroup}>
                 <label htmlFor="scientific-name">Scientific Name:</label>

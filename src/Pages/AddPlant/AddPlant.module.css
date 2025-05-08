@@ -140,3 +140,7 @@
 .submitButton:hover {
   opacity: 0.8;
 }
+
+.errorMessage {
+  color: rgb(244, 52, 52);
+}

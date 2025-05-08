@@ -28,6 +28,10 @@ const PlantItem = () => {
         </div>
         <ul className={styles.list}>
           <li className={styles.listElement}>
+            <p className={styles.plantHeading}>Plant Type:</p>
+            <p className={styles.plantDescription}>{plant.type}</p>
+          </li>
+          <li className={styles.listElement}>
             <p className={styles.plantHeading}>Scientific Name:</p>
             <p className={styles.plantDescription}>{plant.scientificName}</p>
           </li>

@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { PlantListContext } from "../../context/PlantListContext";
 
-const PlantList = () => {
-  const plantList = useContext(PlantListContext);
+const PlantList = ({ filteredSortedList }) => {
+  // const plantList = useContext(PlantListContext);
+  const plantList = filteredSortedList;
 
   return (
     <div className={styles.rootContainer}>

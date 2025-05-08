@@ -8,8 +8,18 @@ import { onSnapshot } from "firebase/firestore";
 import { collection } from "firebase/firestore";
 
 import PlantList from "../../components/PlantList/PlantList";
+import Filter from "../../components/Filter/Filter";
 
 const Home = () => {
+  const [filterType, setFilterType] = useState("all");
+  const handleFilterType = (e) => {
+    setFilterType(e.target.value);
+  };
+
+  const [sortType, setSortType] = useState("alphabetically");
+  const handleSortType = (e) => {
+    setSortType(e.target.value);
+  };
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
@@ -36,26 +46,30 @@ const Home = () => {
         <div className={styles.utilityRightContainer}>
           <div className={styles.filterContainer}>
             <label htmlFor="filter">Filter:</label>
-            <select name="filter" id="filter">
-              <option value="plant">Plant</option>
-              <option value="plant">Tree</option>
-              <option value="plant">Cactus</option>
+            <select name="filter" id="filter" onChange={handleFilterType}>
+              <option value="all">All</option>
+              <option value="herb">Herb</option>
+              <option value="tree">Tree</option>
+              <option value="shrub">Shrub</option>
+              <option value="climber">Climber</option>
+              <option value="creeper">Creeper</option>
             </select>
           </div>
           <div className={styles.sortContainer}>
             <label htmlFor="sort">Sort:</label>
-            <select name="sort" id="sort">
-              <option value="plant-name" className={styles.selectOption}>
-                Plant Name
-              </option>
+            <select name="sort" id="sort" onChange={handleSortType}>
               <option value="alphabetically" className={styles.selectOption}>
-                Scientific Name
+                Alphabetically A-Z
+              </option>
+              <option value="descending" className={styles.selectOption}>
+                Descending Z-A
               </option>
             </select>
           </div>
         </div>
       </div>
-      {<PlantList />}
+      <Filter filterType={filterType} sortType={sortType} />
+      {/* {<PlantList />} */}
     </div>
   );
 };
