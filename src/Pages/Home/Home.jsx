@@ -1,61 +1,35 @@
-import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
-import PlantItem from "../../components/PlantItem/PlantItem";
-import { useParams } from "react-router-dom";
+
+import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { database } from "../../firebaseConfig";
 import { onSnapshot } from "firebase/firestore";
-
 import { collection } from "firebase/firestore";
-import { plantListArray } from "../../assets/localPlantList";
+
+import PlantList from "../../components/PlantList/PlantList";
 
 const Home = () => {
-  const { productId } = useParams();
-
-  // const plantInFocus = plantListArray.find(
-  //   (plant) => plant.name.toLowerCase() === productId
-  // );
-
-  // retrieve info from firebase
-
-  const [plantItem, setPlantItem] = useState([]);
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(database, "plants"),
-      (snapshot) => {
-        const plantsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPlantItem(plantsData);
-      }
-    );
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  const plantInFocus = plantItem.find(
-    (plant) => plant.name && plant.name.toLowerCase() === productId
-  );
-
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
         <h1 className={styles.title}>Plants</h1>
-        <button className={styles.addPlantButton}>Add Plant</button>
+        <NavLink className={styles.addPlantButton} to={"/add-plant"}>
+          Add Plant
+        </NavLink>
       </header>
       <div className={styles.utilityContainers}>
         <div className={styles.utilityLeftContainer}>
           <div className={styles.searchContainer}>
-            <label htmlFor="search">Search:</label>
+            <img src="/icons/search.svg" alt="" />
             <input
+              aria-label="Search for plants"
               type="search"
               name="search"
               id="search"
               placeholder="Search plants"
+              inputMode="search"
+              autoComplete="off"
             />
           </div>
         </div>
@@ -71,21 +45,17 @@ const Home = () => {
           <div className={styles.sortContainer}>
             <label htmlFor="sort">Sort:</label>
             <select name="sort" id="sort">
-              <option value="alphabetically">Alphabetically</option>
+              <option value="plant-name" className={styles.selectOption}>
+                Plant Name
+              </option>
+              <option value="alphabetically" className={styles.selectOption}>
+                Scientific Name
+              </option>
             </select>
           </div>
         </div>
       </div>
-      {!productId && <PlantList listArray={plantItem} />}
-      {productId && (
-        <PlantItem listArray={plantItem} plantInFocus={plantInFocus} />
-      )}
-
-      {/* Local database */}
-      {/* {!productId && <PlantList listArray={plantListArray} />}
-      {productId && (
-        <PlantItem listArray={plantListArray} plantInFocus={plantInFocus} />
-      )} */}
+      {<PlantList />}
     </div>
   );
 };
