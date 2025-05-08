@@ -2,13 +2,14 @@ import PlantList from "../../components/PlantList/PlantList";
 import styles from "./Home.module.css";
 import PlantItem from "../../components/PlantItem/PlantItem";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { database } from "../../firebaseConfig";
 import { onSnapshot } from "firebase/firestore";
 
 import { collection } from "firebase/firestore";
 import { plantListArray } from "../../assets/localPlantList";
+import Filter from "../../components/Filter/Filter";
 
 const Home = () => {
   const { productId } = useParams();
@@ -41,6 +42,16 @@ const Home = () => {
     (plant) => plant.name && plant.name.toLowerCase() === productId
   );
 
+  const [filterType, setFilterType] = useState("all");
+  const handleFilterType = (e) => {
+    setFilterType(e.target.value);
+  };
+
+  const [sortType, setSortType] = useState("alphabetically");
+  const handleSortType = (e) => {
+    setSortType(e.target.value);
+  };
+
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
@@ -62,21 +73,33 @@ const Home = () => {
         <div className={styles.utilityRightContainer}>
           <div className={styles.filterContainer}>
             <label htmlFor="filter">Filter:</label>
-            <select name="filter" id="filter">
+            <select name="filter" id="filter" onChange={handleFilterType}>
+              <option value="all">All</option>
               <option value="plant">Plant</option>
-              <option value="plant">Tree</option>
-              <option value="plant">Cactus</option>
+              <option value="tree">Tree</option>
+              <option value="cactus">Cactus</option>
             </select>
           </div>
           <div className={styles.sortContainer}>
             <label htmlFor="sort">Sort:</label>
-            <select name="sort" id="sort">
-              <option value="alphabetically">Alphabetically</option>
+            <select name="sort" id="sort" onChange={handleSortType}>
+              <option value="alphabetically">Alphabetically A-Z</option>
+              <option value="descending">Descending Z-A</option>
             </select>
           </div>
         </div>
       </div>
-      {!productId && <PlantList listArray={plantItem} />}
+      <Filter
+        listArray={plantItem}
+        filterType={filterType}
+        sortType={sortType}
+      />
+      {/* {filterType === "all" && <PlantList listArray={plantItem} />}
+
+      {filterType !== "all" && (
+        <Filter listArray={plantItem} filterType={filterType} />
+      )} */}
+
       {productId && (
         <PlantItem listArray={plantItem} plantInFocus={plantInFocus} />
       )}
