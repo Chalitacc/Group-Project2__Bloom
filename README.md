@@ -20,3 +20,8 @@ A responsive React-based application to help users care for their plants. Built 
 ## Licence
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it under the license terms.
+
+## Link to Netlify
+
+Here is the link to Netlify:
+https://resonant-maamoul-c9ba28.netlify.app/

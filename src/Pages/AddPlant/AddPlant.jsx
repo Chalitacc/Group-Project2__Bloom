@@ -164,7 +164,6 @@ const AddPlant = () => {
       );
       const data = await response.json();
 
-      // trenger nødvendigvis ikke dette??
       console.log("imageUrl", data.secure_url);
       console.log("public id", data.public_id);
 
@@ -173,10 +172,8 @@ const AddPlant = () => {
         previewUrl: data.secure_url,
       }));
 
-      // setUploadStatus("Image uploaded successfully ✅");
       return data.secure_url;
     } catch (error) {
-      // setUploadStatus("Failed to upload image ❌");
       console.log(error.message);
       return null;
     }
