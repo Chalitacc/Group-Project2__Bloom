@@ -1,11 +1,11 @@
-.filterContainer {
+.sortContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-xx-small);
 }
 
-.filterContainer label,
-.filterContainer select {
+.sortContainer label,
+.sortContainer select {
   padding: var(--spacing-xx-small);
 }

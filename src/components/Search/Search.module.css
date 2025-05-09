@@ -1,0 +1,26 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xx-small);
+  max-width: 300px;
+  position: relative;
+  padding: var(--spacing-x-small);
+  border: 1px solid var(--color-tertiary-beige);
+  border-radius: var(--border-radius-medium);
+}
+
+.searchContainer img {
+  position: absolute;
+  left: var(--spacing-x-small);
+  height: 16px;
+}
+
+.searchContainer input[type="search"] {
+  width: 100%;
+  padding-left: 1.5rem;
+  font-size: 16px;
+  border: none;
+  -webkit-appearance: none; /* for Safari */
+  outline: none;
+}

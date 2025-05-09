@@ -1,12 +1,21 @@
-import PlantList from "../PlantList/PlantList";
+import styles from "./Search.module.css";
 
-const Search = ({ plants = [], searchTerm }) => {
-  // Filter plants based on the search term
-  const sortFilteredList = plants.filter((plant) =>
-    plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+const Search = ({ handleSearchTerm }) => {
+  return (
+    <div className={styles.searchContainer}>
+      <img src="/icons/search.svg" alt="Search icon" />
+      <input
+        aria-label="Search for plants"
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Search plants"
+        inputMode="search"
+        autoComplete="off"
+        onChange={handleSearchTerm}
+      />
+    </div>
   );
-
-  return <PlantList filteredSortedList={sortFilteredList} />;
 };
 
 export default Search;

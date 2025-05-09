@@ -11,6 +11,10 @@ import { PlantListContext } from "../../context/PlantListContext";
 
 // Componets import
 import PlantList from "../../components/PlantList/PlantList";
+import Header from "../../components/Header/Header";
+import Search from "../../components/Search/Search";
+import Filter from "../../components/Filter/Filter";
+import Sort from "../../components/Sort/Sort";
 
 const Home = () => {
   const plantList = useContext(PlantListContext);
@@ -20,10 +24,10 @@ const Home = () => {
   const [sortType, setSortType] = useState("alphabetically");
   const [filteredSortedList, setFilteredSortedList] = useState([]);
 
-  const createFilteredAndSortList = (plantList) => {
+  const createFilteredAndSortedList = (plantList) => {
     // Search
     const searchResultsList = plantList.filter((plant) =>
-      plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+      plant.name.toLowerCase().trim().includes(searchTerm.toLowerCase().trim())
     );
 
     // Filter
@@ -50,7 +54,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    createFilteredAndSortList(plantList);
+    createFilteredAndSortedList(plantList);
   }, [plantList, searchTerm, filterType, sortType]);
 
   // Handle Search
@@ -71,50 +75,15 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Plants</h1>
-        <Link className={styles.addPlantButton} to={"/add-plant"}>
-          Add Plant
-        </Link>
+        <Header />
       </header>
       <div className={styles.utilityContainers}>
         <div className={styles.utilityLeftContainer}>
-          <div className={styles.searchContainer}>
-            <img src="/icons/search.svg" alt="Search icon" />
-            <input
-              aria-label="Search for plants"
-              type="search"
-              name="search"
-              id="search"
-              placeholder="Search plants"
-              inputMode="search"
-              autoComplete="off"
-              onChange={handleSearchTerm}
-            />
-          </div>
+          <Search handleSearchTerm={handleSearchTerm} />
         </div>
         <div className={styles.utilityRightContainer}>
-          <div className={styles.filterContainer}>
-            <label htmlFor="filter">Filter:</label>
-            <select name="filter" id="filter" onChange={handleFilterType}>
-              <option value="all">All</option>
-              <option value="herb">Herb</option>
-              <option value="tree">Tree</option>
-              <option value="shrub">Shrub</option>
-              <option value="climber">Climber</option>
-              <option value="creeper">Creeper</option>
-            </select>
-          </div>
-          <div className={styles.sortContainer}>
-            <label htmlFor="sort">Sort:</label>
-            <select name="sort" id="sort" onChange={handleSortType}>
-              <option value="alphabetically" className={styles.selectOption}>
-                Alphabetically A-Z
-              </option>
-              <option value="descending" className={styles.selectOption}>
-                Descending Z-A
-              </option>
-            </select>
-          </div>
+          <Filter handleFilterType={handleFilterType} />
+          <Sort handleSortType={handleSortType} />
         </div>
       </div>
       {<PlantList filteredSortedList={filteredSortedList} />}
