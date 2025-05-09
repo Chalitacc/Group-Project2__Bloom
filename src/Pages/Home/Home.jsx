@@ -73,21 +73,23 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.homeContainer}>
+    <>
       <header className={styles.header}>
         <Header />
       </header>
-      <div className={styles.utilityContainers}>
-        <div className={styles.utilityLeftContainer}>
-          <Search handleSearchTerm={handleSearchTerm} />
+      <div className={styles.homeContainer}>
+        <div className={styles.utilityContainers}>
+          <div className={styles.utilityLeftContainer}>
+            <Search handleSearchTerm={handleSearchTerm} />
+          </div>
+          <div className={styles.utilityRightContainer}>
+            <Filter handleFilterType={handleFilterType} />
+            <Sort handleSortType={handleSortType} />
+          </div>
         </div>
-        <div className={styles.utilityRightContainer}>
-          <Filter handleFilterType={handleFilterType} />
-          <Sort handleSortType={handleSortType} />
-        </div>
+        {<PlantList filteredSortedList={filteredSortedList} />}
       </div>
-      {<PlantList filteredSortedList={filteredSortedList} />}
-    </div>
+    </>
   );
 };
 
