@@ -1,13 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <>
       <div className={styles.titleContainer}>
-        <NavLink to={"/"}>
+        <Link to={"/"}>
           <img src="/images/bloom-logo.png" alt="Bloom logo" />
-        </NavLink>
+        </Link>
       </div>
     </>
   );

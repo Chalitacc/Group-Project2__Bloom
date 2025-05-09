@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { PlantListContext } from "../../context/PlantListContext";
 
 const PlantList = ({ filteredSortedList }) => {
-  // const plantList = useContext(PlantListContext);
   const plantList = filteredSortedList;
 
   return (

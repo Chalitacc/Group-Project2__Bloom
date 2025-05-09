@@ -1,32 +1,19 @@
-import { useContext } from "react";
-import { PlantListContext } from "../../context/PlantListContext";
-import PlantList from "../PlantList/PlantList";
+import styles from "./Filter.module.css";
 
-const Filter = ({ filterType, sortType }) => {
-  const plantList = useContext(PlantListContext);
-
-  const filterList = () => {
-    if (filterType !== "all") {
-      const filteredList = plantList.filter((item) => item.type === filterType);
-      return filteredList;
-    } else {
-      return plantList;
-    }
-  };
-
-  const sortFilteredList = () => {
-    const filteredList = filterList();
-    // `(a, b) => a.name.localeCompare(b.name)` - Suggested by ChatGpt - Martinus
-    if (sortType === "alphabetically") {
-      return filteredList.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortType === "descending") {
-      return filteredList.sort((a, b) => b.name.localeCompare(a.name));
-    } else {
-      return filteredList;
-    }
-  };
-
-  return <PlantList filteredSortedList={sortFilteredList()} />;
+const Filter = ({ handleFilterType }) => {
+  return (
+    <div className={styles.filterContainer}>
+      <label htmlFor="filter">Filter:</label>
+      <select name="filter" id="filter" onChange={handleFilterType}>
+        <option value="all">All</option>
+        <option value="herb">Herb</option>
+        <option value="tree">Tree</option>
+        <option value="shrub">Shrub</option>
+        <option value="climber">Climber</option>
+        <option value="creeper">Creeper</option>
+      </select>
+    </div>
+  );
 };
 
 export default Filter;
