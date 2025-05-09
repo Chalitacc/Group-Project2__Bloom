@@ -1,5 +1,5 @@
 import styles from "./PlantList.module.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { PlantListContext } from "../../context/PlantListContext";
 
@@ -11,7 +11,7 @@ const PlantList = ({ filteredSortedList }) => {
     <div className={styles.rootContainer}>
       {plantList.map((item) => {
         return (
-          <NavLink
+          <Link
             to={`plants/${item.name?.toLowerCase()}`}
             className={styles.cardContainer}
             key={item.id}
@@ -24,7 +24,7 @@ const PlantList = ({ filteredSortedList }) => {
             <div className={styles.cardInfoContainer}>
               <h3 className={styles.plantName}>{item.name}</h3>
             </div>
-          </NavLink>
+          </Link>
         );
       })}
     </div>
