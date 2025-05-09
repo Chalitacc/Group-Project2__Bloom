@@ -1,7 +1,12 @@
-import styles from "./Search.module.css";
+import PlantList from "../PlantList/PlantList";
 
-const Search = () => {
-  return <div>Search</div>;
+const Search = ({ plants = [], searchTerm }) => {
+  // Filter plants based on the search term
+  const sortFilteredList = plants.filter((plant) =>
+    plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return <PlantList filteredSortedList={sortFilteredList} />;
 };
 
 export default Search;
